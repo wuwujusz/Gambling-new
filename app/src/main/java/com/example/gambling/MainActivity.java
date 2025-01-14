@@ -1,135 +1,129 @@
-package com.example.gambling;
 
+package com.example.gambling;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
-
 public class MainActivity extends AppCompatActivity {
 
-    private TextView spin1;
-    private TextView spin2;
-    private TextView spin3;
-    private TextView spin4;
-    private TextView spin5;
 
-    private Button button_spin;
+    private ImageView[] diceViews = new ImageView[5];
+    private int[] pictures = {R.drawable.em, R.drawable.dice1, R.drawable.dice2, R.drawable.dice3, R.drawable.dice4, R.drawable.dice5, R.drawable.dice6};
+    private TextView dice1, dice2, dice3, dice4, dice5;
+    private int[] DiceResults = new int[5] ;
+    private Button button_rzut;
     private Button button_reset;
-
-    private TextView title;
-
-    private TextView spin_result;
-    private TextView game_result;
-    int game_result2 = 0;
-
-    private TextView spin_number;
-
-    private Random random = new Random();
+    private TextView rzut1;
+    private TextView rzut2;
+    private TextView rzut3;
+    private TextView rzut4;
+    private TextView rzut5;
+    private TextView tytul;
+    private TextView wynik_losowania;
+    private TextView wynik_gry;
+    private TextView liczba_rzutow;
+    private Random ra = new Random();
+    int wynik_los = 0;
+    int wynik_Gry = 0;
     int licznik = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        spin1 = findViewById(R.id.rzut1);
-        spin2 = findViewById(R.id.rzut2);
-        spin3 = findViewById(R.id.rzut3);
-        spin4 = findViewById(R.id.rzut4);
-        spin5 = findViewById(R.id.rzut5);
-
-        game_result = findViewById(R.id.wynik_gry);
-        spin_result = findViewById(R.id.wynik_losowania);
-
-        button_spin = findViewById(R.id.button_rzut);
+        diceViews[0] = findViewById(R.id.dice1);
+        diceViews[1] = findViewById(R.id.dice2);
+        diceViews[2] = findViewById(R.id.dice3);
+        diceViews[3] = findViewById(R.id.dice4);
+        diceViews[4] = findViewById(R.id.dice5);
+        rzut1 = findViewById(R.id.rzut1);
+        rzut2 = findViewById(R.id.rzut2);
+        rzut3 = findViewById(R.id.rzut3);
+        rzut4 = findViewById(R.id.rzut4);
+        rzut5 = findViewById(R.id.rzut5);
+        tytul = findViewById(R.id.tytul);
+        wynik_gry = findViewById(R.id.wynik_gry);
+        wynik_losowania = findViewById(R.id.wynik_losowania);
+        liczba_rzutow = findViewById(R.id.liczba_rzutow);
+        button_rzut = findViewById(R.id.button_rzut);
         button_reset = findViewById(R.id.button_reset);
 
-        spin_number = findViewById(R.id.liczba_rzutow);
-
-        title = findViewById(R.id.tytul);
-
-
-        button_spin.setOnClickListener(new View.OnClickListener() {
+        button_rzut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                int space1 = random.nextInt(6) + 1;
-                spin1.setText(Integer.toString(space1));
-
-
-                int space2 = random.nextInt(6) + 1;
-                spin2.setText(Integer.toString(space2));
-
-
-                int space3 = random.nextInt(6) + 1;
-                spin3.setText(Integer.toString(space3));
-
-
-                int space4 = random.nextInt(6) + 1;
-                spin4.setText(Integer.toString(space4));
-
-
-                int space5 = random.nextInt(6) + 1;
-                spin5.setText(Integer.toString(space5));
-
-
-                int[] numbers = {space1, space2, space3, space4, space5};
-                int result = 0;
-                int[] count = new int[6];
-
-
-                for (int i = 0; i < numbers.length; i++) {
-                    count[numbers[i] - 1]++;
+                for(int i=0; i<5; i++){
+                    DiceResults[i] = ra.nextInt(6) + 1;
+                    diceViews[i].setImageResource(pictures[DiceResults[i]]);
                 }
 
+                // Ustawianie wartości wyrzuconych liczb w odpowiednich polach tekstowych
+                rzut1.setText(String.valueOf(DiceResults[0]));
+                rzut2.setText(String.valueOf(DiceResults[1]));
+                rzut3.setText(String.valueOf(DiceResults[2]));
+                rzut4.setText(String.valueOf(DiceResults[3]));
+                rzut5.setText(String.valueOf(DiceResults[4]));
 
+
+//                int[] liczby = {rad1, rad2, rad3, rad4, rad5};
+                int wynik = 0;
+                int[] count = new int[6]; //tablica przechowująca powtórzenia
+
+                //tutaj leci przez liczby i dodaje powtórzenia do count
+                for (int i = 0; i < DiceResults.length; i++) {
+                    count[DiceResults[i] - 1]++;
+                }
+
+                // tutaj liczy wynik
                 for (int i = 0; i < count.length; i++) {
                     if (count[i] > 1) {
-                        result += (i + 1) * count[i];
+                        wynik += (i + 1) * count[i];
                     }
                 }
 
-
-                spin_result.setText("Wynik tego losowania: " + result);
+                wynik_losowania.setText("Wynik tego losowania: " + wynik);
                 licznik++;
-                spin_number.setText("Liczba rzutów: " + licznik);
-                updateScore(result);
+                liczba_rzutow.setText("Liczba rzutów: " + licznik);
+                updateScore(wynik);
+
             }
         });
-
 
         button_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                spin1.setText("?");
-                spin2.setText("?");
-                spin3.setText("?");
-                spin4.setText("?");
-                spin5.setText("?");
-
-                game_result2 = 0;
+                rzut1.setText("?");
+                rzut2.setText("?");
+                rzut3.setText("?");
+                rzut4.setText("?");
+                rzut5.setText("?");
+                wynik_Gry = 0;
                 licznik = 0;
+                wynik_losowania.setText("Wynik tego losowania: " + wynik_los);
+                wynik_gry.setText("Wynik gry: " + wynik_Gry);
+                liczba_rzutow.setText("Liczba rzutów: " + licznik);
 
-                game_result.setText("Wynik gry: " + game_result2);
-                spin_number.setText("Liczba rzutów: " + licznik);
+
+                // Ustawienie obrazków na blank_dice
+                for (ImageView diceView : diceViews) {
+                    diceView.setImageResource(R.drawable.em);
+                }
+
             }
         });
+
     }
 
-
     private void updateScore(int wynik) {
-
-        game_result2 +=wynik;
-        game_result.setText("Wynik gry: " + game_result2);
+        wynik_Gry +=wynik;
+        wynik_gry.setText("Wynik gry: " + wynik_Gry);
     }
 }
