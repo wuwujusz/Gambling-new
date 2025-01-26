@@ -1,9 +1,56 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Bazowy motyw aplikacji -->
     <style name="Base.Theme.Gambling" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Domyślna wielkość tekstu dla całej aplikacji -->
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="Theme.Gambling" parent="Base.Theme.Gambling" />
+    <!-- Motyw aplikacji -->
+    <style name="Theme.Grawkosci" parent="Base.Theme.Gambling">
+        <!-- Dostosowania do motywu aplikacji -->
+    </style>
+
+    <!-- Styl dla układu głównego -->
+    <style name="MainLayoutStyle">
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">#F5F5DC</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <!-- Styl dla TextView tytułu -->
+    <style name="TitleTextStyle">
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:background">#A52A2A</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">18sp</item> <!-- Ustawiona wielkość tekstu -->
+    </style>
+
+    <!-- Styl dla Button -->
+    <style name="ButtonStyle">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:background">#D2691E</item>
+        <item name="android:textSize">16sp</item> <!-- Wielkość tekstu przycisków -->
+    </style>
+
+    <!-- Styl dla TextView wyników -->
+    <style name="ResultStyle">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">16sp</item> <!-- Wielkość tekstu wyników -->
+    </style>
+
+    <!-- Styl dla kości -->
+    <style name="TextStyle">
+        <item name="android:layout_width">57dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_margin">9dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:background">#ffffff</item>
+        <item name="android:text">?</item>
+        <item name="android:textSize">18sp</item> <!-- Wielkość tekstu dla kości -->
+    </style>
 </resources>
