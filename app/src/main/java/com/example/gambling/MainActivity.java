@@ -1,4 +1,3 @@
-
 package com.example.gambling;
 
 import android.graphics.Color;
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ImageView[] diceViews = new ImageView[5];
-    private int[] pictures = {R.drawable.em, R.drawable.dice1, R.drawable.dice2, R.drawable.dice3, R.drawable.dice4, R.drawable.dice5, R.drawable.dice6};
+    private int[] pictures = {R.drawable.d0, R.drawable.d1, R.drawable.d2, R.drawable.d3, R.drawable.d4, R.drawable.d5, R.drawable.d6};
     private TextView dice1, dice2, dice3, dice4, dice5;
     private int[] DiceResults = new int[5] ;
     private Button button_rzut;
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Ustawienie obrazków na blank_dice
                 for (ImageView diceView : diceViews) {
-                    diceView.setImageResource(R.drawable.em);
+                    diceView.setImageResource(R.drawable.d0);
                 }
 
             }
